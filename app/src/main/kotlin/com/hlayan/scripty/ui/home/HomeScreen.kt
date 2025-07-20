@@ -1,11 +1,23 @@
 package com.hlayan.scripty.ui.home
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.*
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ContentCopy
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -35,9 +47,13 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
         }
     }
 
-    Scaffold(scaffoldState = scaffoldState) {
+    Scaffold(
+        modifier = Modifier.imePadding(),
+        scaffoldState = scaffoldState
+    ) { paddings ->
         Column(
             modifier = Modifier
+                .padding(paddings)
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
                 .padding(16.dp)
@@ -50,7 +66,8 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
 
             Spacer(Modifier.size(8.dp))
 
-            OutlinedTextField(value = viewModel.inputValue.value,
+            OutlinedTextField(
+                value = viewModel.inputValue.value,
                 onValueChange = viewModel::updateInputValue,
                 modifier = Modifier.fillMaxWidth(),
                 trailingIcon = {
